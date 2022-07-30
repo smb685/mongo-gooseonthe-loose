@@ -4,26 +4,20 @@ const mongoose = require('mongoose');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const { User } = require('./models')
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
 
-app.post('/submit', ({body}, res) => {
-    const user = new User(body);
+app.use(require('./routes'));
 
-    User.create(user)
-    .then(dbUser => {
-      res.json(dbUser);
-    })
-    .catch(err => {
-      res.json(err);
-    });
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/mongo-gooseonthe-loose', {
+  useFindAndModify: false,
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 });
 
-app.get('/users', (req, res) => {
-    User.find({}.then(user => {
-        res.json(user);
-    }));
-});
+// Use this to log mongo queries being executed!
+mongoose.set('debug', true);
 
-app.listen(PORT, () => {
-    console.log(`Connection! You are connected on port ${PORT}!`);
-});
+app.listen(PORT, () => console.log(`🌍 Connected on localhost:${PORT}`));
+
