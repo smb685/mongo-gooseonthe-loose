@@ -32,9 +32,7 @@ const thoughtController = {
     },
 
     //create thought
-    addThought({
-        body
-    }, res) {
+    addThought({ body }, res) {
         Thought.create(body)
             .then((ThoughtData) => {
                 return User.findOneAndUpdate(
