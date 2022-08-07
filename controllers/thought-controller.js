@@ -34,25 +34,23 @@ const thoughtController = {
     //create thought
     addThought({ body }, res) {
         Thought.create(body)
-            .then((ThoughtData) => {
-                return User.findOneAndUpdate(
-                    //create a thought using current user
-                    { _id: body.userId },
-                    { $addToSet: { thoughts: ThoughtData._id }}, 
-                    { new: true }
-                );
-            })
-            .then(dbUsersData => {
-                if (!dbUsersData) {
-                    res.status(404).json({ message: 'No user found id.' });
-                    return;
-                }
-                res.json(dbUsersData)
-            })
-            .catch(err => {
-                console.log(err);
-                res.status(400).json(err);
-            });
+        .then(({ _id }) => {
+          return User.findOneAndUpdate(
+            { _id: body.userId },
+            { $push: { thoughts: _id } },
+            { new: true }
+          );
+        })
+        .then((dbUserData) => {
+          if (!dbUserData) {
+            return res
+              .status(404)
+              .json({ message: "Thought created but no user with this id!" });
+          }
+  
+          res.json({ message: "Thought successfully created!" });
+        })
+        .catch((err) => res.json(err));
     },
 
     //update thought by id
