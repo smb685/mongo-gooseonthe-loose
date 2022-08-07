@@ -58,3 +58,9 @@ Please feel free to contact me if you need any further information:
 Walkthrough videos below!
 
 https://drive.google.com/file/d/1Z7DSf3wd1HLhi4WAMA7ZXo5PwOym1pBC/view?usp=sharing
+https://drive.google.com/file/d/1ckTiPBrX1U6gddmkQnsKDHqrRAW0LOPO/view?usp=sharing
+
+Screenshot here!
+<img width="1512" alt="Screen Shot 2022-08-07 at 3 49 29 PM" src="https://user-images.githubusercontent.com/100239887/183315419-1aba865a-0d58-4fb9-b214-ee73de5d3717.png">
+
+
